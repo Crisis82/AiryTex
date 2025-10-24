@@ -1,0 +1,69 @@
+% the option beamer without any argument specifies the beamber class, otherwise by default is used book
+\documentclass[]{academica}
+
+\title{Title \\ example}
+\author{Me}
+%\course{master degree in Artificial Intelligence and Cybersecurity}
+\supervisor{Prof.\ }
+\cosupervisor{Prof.\ \and Prof.\ }
+\tutor{Prof.\ }
+\date{}
+% \rights{}
+\contacts{}
+% \contacts{\textsc{Institute Contacts}\\
+% Universit\'a degli Studi di Udine - Dipartimento di Scienze Matematiche, Informatiche e Fisiche\\
+% Via delle Scienze, 206, 33100 Udine (IT)\\
+% +39 0432 558400\\
+% \url{https://www.dmif.uniud.it/}}
+
+% \usepackage[a-1b]{pdfx}
+\usepackage[pdfa]{hyperref}
+
+%% --- Stili di pagina disponibili (comando \pagestyle) ---
+%% sfbig (predefinito): Apertura delle parti e dei capitoli col numero grande; titoli delle parti e dei capitoli e intestazioni di pagina in sans serif.
+%% big: Come "sfbig", solo serif.
+%% plain: Apertura delle parti e dei capitoli tradizionali di LaTeX; intestazioni di pagina come "big".
+
+\begin{document}
+
+\maketitle
+
+\frontmatter
+
+\begin{dedication}
+	
+\end{dedication}
+
+\acknowledgements
+
+\abstract
+
+\tableofcontents
+
+\mainmatter
+
+\chapter{First chap}
+
+\section{First sec}
+
+\subsection{Subsection}
+
+\subsubsection{SubSubsection}
+
+\appendix
+
+\chapter{First chap of appendix}
+
+\backmatter
+
+%%\summary
+%
+%%% Bibliografia (praticamente obbligatoria)
+%\bibliographystyle{plain_\languagename}%% Carica l'omonimo file .bst, dove \languagename è la lingua attiva.
+%%% Nel caso in cui si usi un file .bib (consigliato)
+%\bibliography{academica}
+%%% Nel caso di bibliografia manuale, usare l'environment thebibliography.
+%
+%%% Per l'indice analitico, usare il pacchetto makeidx (o analogo).
+
+\end{document}
