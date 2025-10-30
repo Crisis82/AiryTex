@@ -2,13 +2,14 @@
 **/*.aux
 **/*.bbl
 **/*.blg
+**/*.loa
+**/*.lof
+**/*.lot
 **/*.log
 **/*.out
 **/*.pdf
 **/*.synctex.gz
 **/*.toc
-**/*.lof
-**/*.lot
 **/*.fls
 **/*.fdb_latexmk
 **/*.bcf
