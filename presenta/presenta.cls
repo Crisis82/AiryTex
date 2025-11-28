@@ -32,7 +32,6 @@
 %%%%%%%%%%%%% PACKAGES %%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 % Sets if the generated output should be a `pdfa`
 \ifpresenta@pdfa
   \RequirePackage[a-1b]{pdfx} % generates pdfa output
@@ -59,7 +58,6 @@
 \RequirePackage{tabularx} % powerful tabular
 \RequirePackage{ragged2e} % provides justification inside columns
 \RequirePackage{enumitem} % itemize customization
-
 
 
 
@@ -108,6 +106,12 @@
   ]{}
 \fi
 
+\newcommand{\quoteinline}[1]{``\textsl{#1}''}
+\newcommand{\textbi}[1]{\textbf{\textit{#1}}}
+\newcommand{\textsb}[1]{{\semibold #1}}
+\newcommand{\textsi}[1]{{\semibolditalic #1}}
+\renewcommand{\emph}[1]{{\emphfont #1}}
+
 \setbeamerfont{caption name}{series=\bfseries}
 
 
@@ -140,8 +144,6 @@
 \setlist[itemize]{label=\color{accent}$\bullet$}
 
 \setbeamercolor{caption name}{fg=accent}
-
-
 
 
 
@@ -214,7 +216,7 @@
 \def\cosupervisorname{Co-Supervisor}
 \def\tutorname{Tutor}
 
-\deffields{overtitle,supervisor,cosupervisor,tutor}
+\deffields{supervisor,cosupervisor,tutor}
 
 \def\@banner{
   \begin{center}
@@ -367,16 +369,6 @@
 %%%%%%%%  TOC  %%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\newcommand\circled[1]{
-%  \tikz[baseline=(char.base)]{
-%    \node[shape=circle,draw,inner sep=2pt,thick] (char) {#1};
-%  }
-%}
-
-%\newcommand\twodigits[1]{
-%   \ifnum#1<10 0#1\else #1\fi
-%}
-
 \setbeamertemplate{section in toc}{
   {\Huge \textcolor{accent}{\textbf{\texttt{\inserttocsectionnumber}}}}
   \hskip1.5ex
@@ -414,7 +406,6 @@
 %\setbeamertemplate{blocks}[rounded][shadow=false]
 
 \tcbuselibrary{skins}
-\tcbuselibrary{skins,listings,breakable}
 \newtcolorbox{accentbox}[3][]{
   enhanced,
   attach boxed title to top left={xshift=3mm,yshift=-3mm,yshifttext=-1mm},
@@ -447,7 +438,6 @@
 
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%   REFERENCES   %%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -476,9 +466,3 @@
 \newcommand{\ie}{\textit{i.e.}, }
 \newcommand{\eg}{\textit{e.g.}, }
 \newcommand{\st}{\textit{s.t.} }
-
-\newcommand{\quoteinline}[1]{``\textsl{#1}''}
-\newcommand{\textbi}[1]{\textbf{\textit{#1}}}
-\newcommand{\textsb}[1]{{\semibold #1}}
-\newcommand{\textsi}[1]{{\semibolditalic #1}}
-\renewcommand{\emph}[1]{{\emphfont #1}}
