@@ -73,29 +73,39 @@
   \RequirePackage{fontspec} % allow to specify custom font
 
   \setmonofont[
-      Path = fonts/Monofur/,
-      UprightFont = *Regular,
-      ItalicFont = *Italic,
-      BoldFont = *Bold,
+      Path = fonts/,
+      UprightFont = *regular,
+      ItalicFont = *italic,
+      BoldFont = *bold,
       Extension = .ttf
-  ]{MonofurNerdFontMono-}
+  ]{mono-}
 
   \setsansfont[
-      Path = fonts/SofiaPro/,
-      UprightFont = *ExtraLight,
-      SlantedFont = *ExtraLight-Italic,
-      ItalicFont = *ExtraLight-Italic,
-      BoldFont = *Medium,
-      BoldItalicFont = *Medium-Italic,
-      Extension = .otf
-  ]{SofiaPro}
+      Path = fonts/,
+      UprightFont = regular,
+      ItalicFont = italic,
+      BoldFont = bold,
+      BoldItalicFont = bold-italic,
+      Extension = .ttf
+  ]{}
   
-  \newfontfamily\semiboldfontitalic[
-      Path = fonts/SofiaPro/,
-      UprightFont = *Light-Italic,
-      Extension = .otf
-  ]{SofiaPro}
+  \newfontfamily\semibold[
+      Path = fonts/,
+      UprightFont = semibold,
+      Extension = .ttf
+  ]{}
 
+  \newfontfamily\semibolditalic[
+      Path = fonts/,
+      UprightFont = semibold-italic,
+      Extension = .ttf
+  ]{}
+
+  \newfontfamily\emphfont[
+      Path = fonts/,
+      UprightFont = emph,
+      Extension = .ttf
+  ]{}
 \fi
 
 \setbeamerfont{caption name}{series=\bfseries}
@@ -106,7 +116,7 @@
 %%%%%%%%%%% COLORS %%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\definecolor{white}{HTML}{F5F5F5}
+\definecolor{white}{HTML}{F5F5F5}
 \definecolor{black}{HTML}{1D1D1C}
 \definecolor{graydark}{HTML}{525252}
 
@@ -223,7 +233,7 @@
   \setbeamercolor{title page header}{fg=accent,bg=white}
   \begin{beamercolorbox}[wd=8cm,rounded=true,leftskip=0cm,sep=8pt,#1]{title page header}
       \raggedright\LARGE\bfseries\inserttitle\par
-      \raggedright\large\semiboldfontitalic\insertsubtitle\par
+      \raggedright\large\textsi{\insertsubtitle}\par
   \end{beamercolorbox}%
   \vskip0.4cm%
   \small
@@ -295,7 +305,7 @@
     \else
       \begin{tikzpicture}[remember picture, overlay]
         \draw[fill=accent,draw=accent] (-0.55pt,0) rectangle (0.5,0.6);
-        \draw[draw=accent,rounded corners] (\@tempdima+10pt,0) rectangle (\@tempdima+\@tempdimb+30pt,0.6) node [midway] {\color{accent}\large\semiboldfontitalic \ \ \insertframesubtitle};
+        \draw[draw=accent,rounded corners] (\@tempdima+10pt,0) rectangle (\@tempdima+\@tempdimb+30pt,0.6) node [midway] {\color{accent}\large\textsi{\ \ \insertframesubtitle}};
         \draw[fill=accent,draw=accent,rounded corners] (0,0) rectangle (\@tempdima+20pt,0.6) node [midway]{\color{white}\Large\bfseries \insertframetitle};
       \end{tikzpicture}
     \fi
@@ -315,7 +325,7 @@
     \else
       \begin{tikzpicture}[remember picture, overlay]
       \draw[fill=accent,draw=accent] (\paperwidth-20pt,0.6) rectangle (\paperwidth - 14.9pt,0);
-      \draw[draw=accent,rounded corners] (\paperwidth-\@tempdima-\@tempdimb-48pt,0.6) rectangle (\paperwidth-\@tempdima-33pt,0) node [midway] {\color{accent}\large\semiboldfontitalic \insertframesubtitle \ \ \ };
+      \draw[draw=accent,rounded corners] (\paperwidth-\@tempdima-\@tempdimb-48pt,0.6) rectangle (\paperwidth-\@tempdima-33pt,0) node [midway] {\color{accent}\large\textsi{\insertframesubtitle \ \ \ }};
       \draw[fill=accent,draw=accent,rounded corners] (\paperwidth-\@tempdima-40pt,0.6) rectangle (\paperwidth-15pt,0) node [midway]{\color{white}\Large\bfseries \insertframetitle};
       \end{tikzpicture}
     \fi
@@ -329,6 +339,7 @@
 
 \define@key{beamerframe}{right}[true]{
   \setbeamertemplate{frametitle}[right]
+  \addtolength{\textheight}{-0.3pt}
 }
 
 
@@ -387,7 +398,6 @@
       \bigskip
       \oldtableofcontents
     \end{frame}
-    %\setcounter{framenumber}{1}
   }
 }
 
@@ -468,3 +478,7 @@
 \newcommand{\st}{\textit{s.t.} }
 
 \newcommand{\quoteinline}[1]{``\textsl{#1}''}
+\newcommand{\textbi}[1]{\textbf{\textit{#1}}}
+\newcommand{\textsb}[1]{{\semibold #1}}
+\newcommand{\textsi}[1]{{\semibolditalic #1}}
+\renewcommand{\emph}[1]{{\emphfont #1}}

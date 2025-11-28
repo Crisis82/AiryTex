@@ -5,9 +5,7 @@
 %   - banner={banner1,banner2,...}: specifies the banners to use (order of the banner is important)
 %   - handout: removes the \pause
 %   - nolight: specifies if you dont want a light font (default)
-\documentclass[banner={aau},handout]{presenta}
-
-\input{preamble.tex}
+\documentclass[banner={uniud},handout]{presenta}
 
 \title{Some simple title}
 \author{me}
@@ -25,22 +23,27 @@
 
 \section{Section}
 
-\begin{frame}{A long frame title with subtitle}{a long subtitle}
-  Here's some list
+\begin{frame}{A long frame title with subtitle}{a longer subtitle}
+  Here's a list of stiles:
   \begin{itemize}
-    \item first;
-    \pause
-    \item second;
-    \pause
-    \item third.
+    \item regular;
+    \item \textsl{slanted};
+    \item \textit{italic};
+    \item \emph{emphasized};
+    \item \textsb{semibold};
+    \item \textsi{semibold-italic};
+    \item \textbf{bold};
+    \item \textbi{bold-italic}.
   \end{itemize}
 \end{frame}
 
-\begin{frame}[right]{short}{sht}
+\begin{frame}[right]{Short}{srt}
   A \textit{right sided} frame title with \textbf{enumerate}:
   \begin{enumerate}
     \item item 1;
+    \pause
     \item second item;
+    \pause
     \item last item.
   \end{enumerate}
 \end{frame}
@@ -67,27 +70,26 @@
     \end{column}
     \hfill
   \end{columns}
-  \footnotetext{simple as that}
+  \footnotetext{simple footnote}
 \end{frame}
 
 \section{Another helpful section}
 
 \begin{frame}{Math examples}
-  $0x3 + 0^3 + I_{m^\prime} - \rho^{24} = \widehat{16}$
+  This is an addition of values $0x3 + 0^3 + I_{m^\prime} - \rho^{24} = \widehat{16}$, followed by this equation:
 
   \begin{equation*}
     f = - 5x^3 + 7x^2z^2 + 4xy^2z + 4z^2  
   \end{equation*}
 
-  $x^2 \notin \langle \lt{f_1}, \lt{f_2} \rangle$
+  that results in this $x^2 \notin \langle \mathsf{LT}(f_1), \mathsf{LT}(f_2), \ldots \rangle$.
 
-  \begin{definition}[\texttt{Square}]
-    The function $S: \field^2_p \rightarrow \field^2_p$ is a squaring operation followed by the addition of a pseudo-random round constant $\gamma$ and is defined as follows:
+  \begin{definition}[My important definition]
+    The function $S: \mathbb{F}^2_p \rightarrow \mathbb{F}^2_p$ is a common function that loads a constant $\gamma$ and is defined as follows:
     \begin{equation*}
-      S_i(x_L, x_R) \rightarrow \left( x_R + \frac{(x_L)^2}{\sigma} + \gamma_i, x_L \right),
+      S_i(x_i) \rightarrow \left( x_{i-1} + \frac{(x_{i-2})^2}{\sigma} + \gamma_i \right),
     \end{equation*}
-    % with $\sigma$ a Montgomery constant.
-    with $\sigma$ a constant.
+    with $\sigma$ another constant.
   \end{definition}
 \end{frame}
 
