@@ -17,4 +17,4 @@ Then, you just need to specify it as the documentclass, e.g.
 
 ## Compilation
 
-It's also provided [biblatex.sh](./biblatex.sh), which is a simple bash script to compile the latex file using lualatex and biber.
+It's also provided [biblatex](./biblatex), which is a simple bash script to compile the latex file using lualatex and biber.
