@@ -1,6 +1,6 @@
-# Latex templates
+# AiryTex
 
-Minimal pastel colored LaTex templates inspired by the [Thud](https://github.com/miculan/thud) template, and designed to give a fresh, modern and calming feeling to scientific papers and presentations.
+Light-font pastel-colored LaTeX templates inspired by the [Thud](https://github.com/miculan/thud) template, designed to give a fresh, modern and calming feeling to scientific papers and presentations.
 
 The classes provided in this repository are:
 - **academica**: built upon the standard *book* class (*i.e.*, papers/articles/journals);
@@ -14,6 +14,8 @@ Then, you just need to specify it as the documentclass, e.g.
 ```tex
 \documentclass{academica}
 ```
+
+For each class is provided an example file (`example.tex`) and template one (`main.tex`).
 
 ## Compilation
 
