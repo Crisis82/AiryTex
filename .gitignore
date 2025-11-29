@@ -16,3 +16,8 @@
 **/*.nav
 **/*.snm
 **/*.run.xml
+
+!academica/example.pdf
+!presenta/example.pdf
+!**/aau.pdf
+!**/uniud.pdf
