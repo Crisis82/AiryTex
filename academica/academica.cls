@@ -89,7 +89,19 @@
 % By default sets text to a light font.
 \ifacademica@nolight
 \else
-  %\RequirePackage{cmbright} % use computer modern bright for math
+  \RequirePackage{cmbright} % use computer modern bright for math
+
+  %\RequirePackage{mathspec}
+
+  %\setmathfont[
+  %    Path = fonts/,
+  %    UprightFont = regular,
+  %    ItalicFont = italic,
+  %    BoldFont = bold,
+  %    BoldItalicFont = bold-italic,
+  %    Extension = .ttf
+  %]{}
+
   \RequirePackage{fontspec} % allow to specify custom font
 
   \setmonofont[
