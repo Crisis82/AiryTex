@@ -1,4 +1,4 @@
-# AiryTex
+# Airy
 
 Light-font pastel-colored LaTeX templates inspired by the [Thud](https://github.com/miculan/thud) template, designed to give a fresh, modern and calming feeling to scientific papers and presentations.
 
