@@ -630,8 +630,8 @@
 %%%%%%%%   COMMON COMMANDS   %%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\ie}{\textit{i.e.}, }
-\newcommand{\eg}{\textit{e.g.}, }
+\newcommand{\ie}{\textit{i.e.}}
+\newcommand{\eg}{\textit{e.g.}}
 \newcommand{\st}{\textit{s.t.} }
 
 
@@ -642,6 +642,31 @@
 
 \newcommand{\abs}[1]{\left\vert #1 \right\vert}
 \newcommand{\vars}[3]{{#1}_{#2},\ldots,{#1}_{#3}}
+
+\newcommand{\wlogt}{w.l.o.g. }
+\newcommand{\Wlogt}{W.l.o.g. }
+\newcommand{\ifft}{\text{ iff }}
+\newcommand{\andt}{\text{ for }}
+\newcommand{\fort}{\text{ and }}
+
+\newcommand{\tuple}[1]{\left(  #1 \right)}
+\newcommand{\tuplev}[1]{\left\langle #1 \right\rangle}
+\newcommand{\set}[1]{\left\{  #1 \right\}}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\renewcommand{\a}{\alpha}
+\renewcommand{\b}{\beta}
+\renewcommand{\d}{\delta}
+\newcommand{\e}{\varepsilon}
+\renewcommand{\u}{\mu}
+\newcommand{\s}{\sigma}
+\newcommand{\w}{\omega}
+\newcommand{\D}{\Delta}
+\renewcommand{\S}{\Sigma}
+\renewcommand{\O}{\Omega}
 
 % Default math commands useful for spacing:
 % \; - a thick space
