@@ -58,15 +58,17 @@
 
 \RequirePackage{tikz} % creation of tikz pictures
 \usetikzlibrary{shadows} % adds shadow option into tikz pictures
+\usetikzlibrary{decorations.pathmorphing} % adds line path modification (for wavy lines)
+
 \RequirePackage{pgfplots} % extend tikz by adding plots
 \pgfplotsset{compat=1.18} % sets pgfplots compat version
 \RequirePackage{siunitx} % units of measure (seconds, ...)
 
 \RequirePackage[figure,table]{totalcount} % get total occurences of figures and tables (used in TOC)
 
-\RequirePackage{tabularx}
-\RequirePackage{cancel}
-
+\RequirePackage{tabularx} % powerful tabular extension
+\RequirePackage{cancel} % for cancelling our math
+\RequirePackage{listings} % for block of codes
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -341,6 +343,11 @@
   \academicachapterback
 }
 
+% options for listings
+\lstset{
+  basicstyle=\ttfamily,
+  % columns=fullflexible,
+}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
