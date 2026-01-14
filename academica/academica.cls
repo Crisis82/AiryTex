@@ -224,7 +224,12 @@
 %%%%%%%% ENVIRONMENT %%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% sets an empty circle as the second layer of itemize
 \renewcommand{\labelitemii}{$\circ$}
+
+% sets the footnote marker inside tcolorbox (used by our custom enviroments like theorem)
+% to a symbol instead of a letter
+\renewcommand{\thempfootnote}{\fnsymbol{footnote}}
 
 \def\acknowledgements{\chapter*{\textcolor{accentmedium}{Acknowledgements}}}
 \def\abstract{\chapter*{\textcolor{accentmedium}{Abstract}}\addcontentsline{toc}{chapter}{Abstract}}
@@ -345,9 +350,12 @@
 
 % options for listings
 \lstset{
-  basicstyle=\ttfamily,
-  % columns=fullflexible,
+  language=Python,
+  basicstyle=\linespread{0.6}\ttfamily,
+  keywordstyle=\color{accent}\bfseries,
+  commentstyle=\color{gray}\itshape,
 }
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -653,8 +661,8 @@
 \newcommand{\wlogt}{w.l.o.g. }
 \newcommand{\Wlogt}{W.l.o.g. }
 \newcommand{\ifft}{\text{ iff }}
-\newcommand{\andt}{\text{ for }}
-\newcommand{\fort}{\text{ and }}
+\newcommand{\andt}{\text{ and }}
+\newcommand{\fort}{\text{ for }}
 
 \newcommand{\tuple}[1]{\left(  #1 \right)}
 \newcommand{\tuplev}[1]{\left\langle #1 \right\rangle}
@@ -668,9 +676,10 @@
 \renewcommand{\b}{\beta}
 \renewcommand{\d}{\delta}
 \newcommand{\e}{\varepsilon}
-\renewcommand{\u}{\mu}
 \newcommand{\s}{\sigma}
+\newcommand{\p}{\varphi}
 \renewcommand{\t}{\tau}
+\renewcommand{\u}{\mu}
 \newcommand{\w}{\omega}
 \newcommand{\D}{\Delta}
 \renewcommand{\S}{\Sigma}
