@@ -13,7 +13,8 @@
 \DeclareOption{nolight}{\academica@nolighttrue}
 \ProcessOptions\relax
 
-\LoadClass[a4paper,12pt,xcolor=table]{book}
+\LoadClass[a4paper,12pt]{book}
+% \LoadClass[a4paper,12pt,xcolor=table]{book}
 
 
 
@@ -225,11 +226,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % sets an empty circle as the second layer of itemize
-\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemii}{\circ}
+\renewcommand{\labelitemiii}{-}
 
 % sets the footnote marker inside tcolorbox (used by our custom enviroments like theorem)
 % to a symbol instead of a letter
-\renewcommand{\thempfootnote}{\fnsymbol{footnote}}
+\renewcommand{\thempfootnote}{\fnsymbol{mpfootnote}}
 
 \def\acknowledgements{\chapter*{\textcolor{accentmedium}{Acknowledgements}}}
 \def\abstract{\chapter*{\textcolor{accentmedium}{Abstract}}\addcontentsline{toc}{chapter}{Abstract}}
@@ -259,7 +261,6 @@
   coltext=black,
   arc=4mm,boxrule=2pt,
   title=\textbf{#2}\ifx#1\@empty \else : \textit{#1}\fi,
-  halign=flush left,
   boxed title style={size=small,colframe=#3!160,arc=2mm}
 }
 
@@ -658,8 +659,6 @@
 \newcommand{\abs}[1]{\left\vert #1 \right\vert}
 \newcommand{\vars}[3]{{#1}_{#2},\ldots,{#1}_{#3}}
 
-\newcommand{\wlogt}{w.l.o.g. }
-\newcommand{\Wlogt}{W.l.o.g. }
 \newcommand{\ifft}{\text{ iff }}
 \newcommand{\andt}{\text{ and }}
 \newcommand{\fort}{\text{ for }}
