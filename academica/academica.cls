@@ -355,6 +355,8 @@
   basicstyle=\linespread{0.6}\ttfamily,
   keywordstyle=\color{accent}\bfseries,
   commentstyle=\color{gray}\itshape,
+  showstringspaces=false,
+  mathescape=true
 }
 
 
