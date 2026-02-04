@@ -14,7 +14,7 @@
 \ProcessOptions\relax
 
 \LoadClass[a4paper,12pt]{book}
-% \LoadClass[a4paper,12pt,xcolor=table]{book}
+%\LoadClass[a4paper,12pt,xcolor=table]{book}
 
 
 
@@ -52,7 +52,7 @@
 
 \RequirePackage[backend=biber,style=numeric,maxbibnames=99,doi=true,eprint=true,sorting=none]{biblatex} % bibliography management
 
-%\RequirePackage[table]{xcolor} % provides common colornames, plus allows definition of custom colors
+\RequirePackage[table]{xcolor} % provides common colornames, plus allows definition of custom colors
 \RequirePackage{tcolorbox} % creation of colored boxes
 
 \RequirePackage{mathtools,amssymb} % math environments (equation, ..) and math symbols
@@ -71,6 +71,7 @@
 \RequirePackage{cancel} % for cancelling our math
 \RequirePackage{listings} % for block of codes
 
+\RequirePackage{xspace} % for space only if no punctuation follows
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%% BASIC CLASS OPTIONS %%%%%%%
@@ -669,10 +670,6 @@
 \newcommand{\tuplev}[1]{\left\langle #1 \right\rangle}
 \newcommand{\set}[1]{\left\{  #1 \right\}}
 
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Q}{\mathbb{Q}}
-
 \renewcommand{\a}{\alpha}
 \renewcommand{\b}{\beta}
 \renewcommand{\d}{\delta}
@@ -685,6 +682,23 @@
 \newcommand{\D}{\Delta}
 \renewcommand{\S}{\Sigma}
 \renewcommand{\O}{\Omega}
+
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\V}{\mathcal{V}}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\second}{{\prime\prime}}
+\newcommand{\third}{{\prime\prime\prime}}
+
+\newcommand{\true}{\textsc{true}\xspace}
+\newcommand{\false}{\textsc{false}\xspace}
 
 % Default math commands useful for spacing:
 % \; - a thick space
