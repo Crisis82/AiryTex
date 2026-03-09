@@ -156,6 +156,7 @@
 
 %\definecolor{white}{HTML}{F5F5F5}
 \definecolor{black}{HTML}{1D1D1C}
+\colorlet{graylight}{gray!50}
 \definecolor{graydark}{HTML}{525252}
 
 \definecolor{lilla}{HTML}{B4B5EE}
@@ -188,6 +189,7 @@
 % create storage for titles
 \newcommand{\chaptertitle}{}
 \newcommand{\sectiontitle}{}
+\newcommand{\subsectiontitle}{}
 
 % update stored chapter title whenever \chapter is used
 \renewcommand{\chaptermark}[1]{
@@ -195,12 +197,19 @@
   \renewcommand{\chaptertitle}{#1}
   % reset section title when a new chapter starts
   \renewcommand{\sectiontitle}{}
+  \renewcommand{\subsectiontitle}{}
 }
 
 % update stored section title whenever \section is used
 \renewcommand{\sectionmark}[1]{
   \markright{#1}
   \renewcommand{\sectiontitle}{#1}
+  \renewcommand{\subsectiontitle}{#1}
+}
+
+\renewcommand{\subsectionmark}[1]{
+  \markright{#1}
+  \renewcommand{\subsectiontitle}{#1}
 }
 
 % custom definition of header
@@ -208,7 +217,11 @@
   \ifnum\value{section}=0
     \MakeUppercase{\chaptertitle}
   \else
-    \MakeUppercase{\chaptertitle} \ --- \ \textit{\sectiontitle}
+    \ifnum\value{subsection}=0
+      \MakeUppercase{\chaptertitle} \ --- \ \textit{\sectiontitle}
+    \else
+      \MakeUppercase{\chaptertitle} \ --- \ \textit{\sectiontitle :\ \MakeLowercase{\subsectiontitle}}
+    \fi
   \fi
 }
 
@@ -251,8 +264,22 @@
 
 \newenvironment{dedication}{\begin{titlelike}{flushright}\begin{itshape}}{\end{itshape}\end{titlelike}}
 
-\tcbuselibrary{skins}
-\newtcolorbox{accentbox}[3][]{
+\tcbuselibrary{breakable,skins}
+\newtcolorbox{accentbox}[4][]{
+  breakable, %split the environment if the end of the page is reached
+  enhanced,
+  attach boxed title to top left={xshift=3mm,yshift=-3mm,yshifttext=-1mm},
+  colback=#4!30,
+  colframe=#4!160,
+  colbacktitle=white,
+  coltitle=#4!240,
+  coltext=black,
+  arc=4mm,boxrule=2pt,
+  title={\textbf{#2 #3}\ifx#1\@empty\else : \emph{#1}\fi},
+  boxed title style={size=small,colframe=#4!160,arc=2mm}
+}
+\newtcolorbox{accentbox*}[3][]{
+  breakable, %split the environment if the end of the page is reached
   enhanced,
   attach boxed title to top left={xshift=3mm,yshift=-3mm,yshifttext=-1mm},
   colback=#3!30,
@@ -261,7 +288,7 @@
   coltitle=#3!240,
   coltext=black,
   arc=4mm,boxrule=2pt,
-  title=\textbf{#2}\ifx#1\@empty \else : \textit{#1}\fi,
+  title={\textbf{#2}\ifx#1\@empty\else : \emph{#1}\fi},
   boxed title style={size=small,colframe=#3!160,arc=2mm}
 }
 
@@ -278,28 +305,41 @@
 \newcounter{note}
 
 % definition of \autoref name
-\newcommand{\definitionautorefname}{Definition }
-\renewcommand{\theoremautorefname}{Theorem }
-\newcommand{\lemmaautorefname}{Lemma }
-\newcommand{\propositionautorefname}{Proposition }
-\newcommand{\corollaryautorefname}{Corollary }
-\newcommand{\proofautorefname}{Proof }
-\newcommand{\exampleautorefname}{Example }
-\newcommand{\exerciseautorefname}{Exercise }
-\newcommand{\questionautorefname}{Question }
-\newcommand{\noteautorefname}{Note }
+\newcommand{\definitionautorefname}{Definition}
+\renewcommand{\theoremautorefname}{Theorem}
+\newcommand{\lemmaautorefname}{Lemma}
+\newcommand{\propositionautorefname}{Proposition}
+\newcommand{\corollaryautorefname}{Corollary}
+\newcommand{\proofautorefname}{Proof}
+\newcommand{\exampleautorefname}{Example}
+\newcommand{\exerciseautorefname}{Exercise}
+\newcommand{\questionautorefname}{Question}
+\newcommand{\noteautorefname}{Note}
+
 
 % creation of colored enviroments
-\newenvironment{definition}[1][]{\refstepcounter{definition}\begin{accentbox}[#1]{Definition}{lilla}}{\end{accentbox}}
-\newenvironment{theorem}[1][]{\refstepcounter{theorem}\begin{accentbox}[#1]{Theorem}{blue}}{\end{accentbox}}
-\newenvironment{lemma}[1][]{\refstepcounter{lemma}\begin{accentbox}[#1]{Lemma}{deepsea}}{\end{accentbox}}
-\newenvironment{proposition}[1][]{\refstepcounter{proposition}\begin{accentbox}[#1]{Proposition}{deepsea}}{\end{accentbox}}
-\newenvironment{corollary}[1][]{\refstepcounter{corollary}\begin{accentbox}[#1]{Corollary}{deepsea}}{\end{accentbox}}
-\newenvironment{proof}[1][]{\refstepcounter{proof}\begin{accentbox}[#1]{Proof}{pink}}{\end{accentbox}}
-\newenvironment{example}[1][]{\refstepcounter{example}\begin{accentbox}[#1]{Example}{orange}}{\end{accentbox}}
-\newenvironment{exercise}[1][]{\refstepcounter{exercise}\begin{accentbox}[#1]{Exercise}{orange}}{\end{accentbox}}
-\newenvironment{question}[1][]{\refstepcounter{question}\begin{accentbox}[#1]{Question}{green}}{\end{accentbox}}
-\newenvironment{note}{\refstepcounter{note}\begin{accentbox}[]{Note}{gray}}{\end{accentbox}}
+\newenvironment{definition}[1][]{\refstepcounter{definition}\def\@currentlabelname{#1}\begin{accentbox}[#1]{Definition}{\thedefinition}{lilla}}{\end{accentbox}}
+\newenvironment{theorem}[1][]{\refstepcounter{theorem}\def\@currentlabelname{#1}\begin{accentbox}[#1]{Theorem}{\thetheorem}{blue}}{\end{accentbox}}
+\newenvironment{lemma}[1][]{\refstepcounter{lemma}\def\@currentlabelname{#1}\begin{accentbox}[#1]{Lemma}{\thelemma}{deepsea}}{\end{accentbox}}
+\newenvironment{proposition}[1][]{\refstepcounter{proposition}\def\@currentlabelname{#1}\begin{accentbox}[#1]{Proposition}{\theproposition}{deepsea}}{\end{accentbox}}
+\newenvironment{corollary}[1][]{\refstepcounter{corollary}\def\@currentlabelname{#1}\begin{accentbox}[#1]{Corollary}{\thecorollary}{deepsea}}{\end{accentbox}}
+\newenvironment{proof}[1][]{\refstepcounter{proof}\def\@currentlabelname{#1}\begin{accentbox}[#1]{Proof}{\theproof}{pink}}{\end{accentbox}}
+\newenvironment{example}[1][]{\refstepcounter{example}\def\@currentlabelname{#1}\begin{accentbox}[#1]{Example}{\theexample}{orange}}{\end{accentbox}}
+\newenvironment{exercise}[1][]{\refstepcounter{exercise}\def\@currentlabelname{#1}\begin{accentbox}[#1]{Exercise}{\theexercise}{orange}}{\end{accentbox}}
+\newenvironment{question}[1][]{\refstepcounter{question}\def\@currentlabelname{#1}\begin{accentbox}[#1]{Question}{\theexercise}{green}}{\end{accentbox}}
+
+\newenvironment{definition*}[1][]{\begin{accentbox*}[#1]{Definition}{lilla}}{\end{accentbox*}}
+\newenvironment{theorem*}[1][]{\begin{accentbox*}[#1]{Theorem}{blue}}{\end{accentbox*}}
+\newenvironment{lemma*}[1][]{\begin{accentbox*}[#1]{Lemma}{deepsea}}{\end{accentbox*}}
+\newenvironment{proposition*}[1][]{\begin{accentbox*}[#1]{Proposition}{deepsea}}{\end{accentbox*}}
+\newenvironment{corollary*}[1][]{\begin{accentbox*}[#1]{Corollary}{deepsea}}{\end{accentbox*}}
+\newenvironment{proof*}[1][]{\begin{accentbox*}[#1]{Proof}{pink}}{\end{accentbox*}}
+\newenvironment{example*}[1][]{\begin{accentbox*}[#1]{Example}{orange}}{\end{accentbox*}}
+\newenvironment{exercise*}[1][]{\begin{accentbox*}[#1]{Exercise}{orange}}{\end{accentbox*}}
+\newenvironment{question*}[1][]{\begin{accentbox*}[#1]{Question}{green}}{\end{accentbox*}}
+\newenvironment{note}{\begin{accentbox*}[]{Note}{gray}}{\end{accentbox*}}
+
+\newenvironment{displaybox}{\par\bigskip}{\par\bigskip}
 
 % custom title body:
 % chaptertitle <empty> bigchapternumber
@@ -354,8 +394,8 @@
 \lstset{
   language=Python,
   basicstyle=\linespread{0.6}\ttfamily,
-  keywordstyle=\color{accent}\bfseries,
-  commentstyle=\color{gray}\itshape,
+  keywordstyle=\color{accent!125}\bfseries,
+  commentstyle=\color{gray!70}\itshape,
   showstringspaces=false,
   mathescape=true
 }
@@ -521,11 +561,10 @@
 \titlecontents{part}[-1pc]
 {
   \addvspace{50pt}
-	\begin{tikzpicture}[remember picture, overlay]
+	\begin{tikzpicture}[overlay]
 		\draw[fill=accent,draw=accent,rounded corners] (-4.5,-0.2) rectangle (-0.2,0.55);
-    \pgftext[left,x=-1.6cm,y=0.15cm]{\textcolor{white}{\Large\sc\bfseries Part}};
-	\end{tikzpicture}
-  \large\sc\bfseries
+    \pgftext[left,x=-1.6cm,y=0.15cm]{\textcolor{white}{\Large\sc\bfseries Part}}
+	\end{tikzpicture}\large\sc\bfseries
 }
 {}
 {}
@@ -536,14 +575,14 @@
 {
   \addvspace{30pt}
   \ifx\thecontentslabel\@empty
-    \begin{tikzpicture}[remember picture, overlay]
+    \begin{tikzpicture}[overlay]
 	  	\draw[fill=accent,draw=accent,rounded corners] (-3.5,-0.2) rectangle (-0.7,0.55);
-      \pgftext[left,x=-3.38cm,y=0.18cm]{\textcolor{white}{\Large\sc\bfseries Chapter}};
+      \pgftext[left,x=-3.38cm,y=0.18cm]{\textcolor{white}{\Large\sc\bfseries Chapter}}
     \end{tikzpicture}\large\sc\bfseries
   \else
-	  \begin{tikzpicture}[remember picture, overlay]
+	  \begin{tikzpicture}[overlay]
 	  	\draw[fill=accent,draw=accent,rounded corners] (-3.5,-0.2) rectangle (-0.3,0.55);
-      \pgftext[left,x=-3.38cm,y=0.18cm]{\textcolor{white}{\Large\sc\bfseries Chapter\ \thecontentslabel}};
+      \pgftext[left,x=-3.38cm,y=0.18cm]{\textcolor{white}{\Large\sc\bfseries Chapter\ \thecontentslabel}}
     \end{tikzpicture}\large\sc\bfseries
   \fi
 }
@@ -551,8 +590,8 @@
 {}
 {
   \;\titlerule\;\large\sc\bfseries Page \thecontentspage
-	\begin{tikzpicture}[remember picture, overlay]
-		\draw[fill=black,draw=black] (4pt,0.2pt) rectangle (4,0.2pt);
+	\begin{tikzpicture}[overlay]
+		\draw[fill=black,draw=black] (4pt,0.2pt) rectangle (4cm,0.2pt);
 	\end{tikzpicture}
 }
 
@@ -592,9 +631,9 @@
   \let\cleardoublepage\clearpage
 	\chapter*{
 	  \vspace*{-20\p@}
-	  \begin{tikzpicture}[remember picture, overlay]
+	  \begin{tikzpicture}[overlay]
 		  \draw[fill=accent,draw=accent,rounded corners] (10,-0.65) rectangle (20,1);
-		  \pgftext[right,x=16.7cm,y=0.2cm]{\color{white}\Huge\sc\bfseries List of Figures};
+      \pgftext[right,x=16.7cm,y=0.2cm]{\Huge\sc\bfseries\textcolor{white}{List of Figures}}
 	  \end{tikzpicture}
   }
   \@starttoc{lof}
@@ -603,9 +642,9 @@
 \renewcommand{\listoftables}{
 	\chapter*{
 	  \vspace*{-20\p@}
-	  \begin{tikzpicture}[remember picture, overlay]
+	  \begin{tikzpicture}[overlay]
 		  \draw[fill=accent,draw=accent,rounded corners] (10.5,-0.65) rectangle (20,1);
-		  \pgftext[right,x=16.7cm,y=0.2cm]{\color{white}\Huge\sc\bfseries List of Tables};
+      \pgftext[right,x=16.7cm,y=0.2cm]{\Huge\sc\bfseries\textcolor{white}{List of Tables}}
 	  \end{tikzpicture}
   }
   \@starttoc{lot}
@@ -615,9 +654,9 @@
 \renewcommand{\tableofcontents}{
 	\chapter*{
 	  \vspace*{-20\p@}
-	  \begin{tikzpicture}[remember picture, overlay]
+	  \begin{tikzpicture}[overlay]
 		  \draw[fill=accent,draw=accent,rounded corners] (12.2,-0.65) rectangle (20,1);
-		  \pgftext[right,x=16.7cm,y=0.2cm]{\color{white}\Huge\sc\bfseries \contentsname};
+      \pgftext[right,x=16.7cm,y=0.2cm]{\Huge\sc\bfseries\textcolor{white}{\contentsname}}
 	  \end{tikzpicture}
   }
 	\@starttoc{toc}
@@ -664,11 +703,17 @@
 
 \newcommand{\ifft}{\text{ iff }}
 \newcommand{\andt}{\text{ and }}
+\newcommand{\ort}{\text{ or }}
 \newcommand{\fort}{\text{ for }}
 
-\newcommand{\tuple}[1]{\left(  #1 \right)}
-\newcommand{\tuplev}[1]{\left\langle #1 \right\rangle}
-\newcommand{\set}[1]{\left\{  #1 \right\}}
+\newcommand{\tuple}[1]{(\,#1\,)}
+\newcommand{\tuplev}[1]{\langle\,#1\,\rangle}
+\newcommand{\set}[1]{\{\,#1\,\}}
+
+\newcommand{\bigtuple}[1]{\big(\,#1\,\big)}
+\newcommand{\Bigtuple}[1]{\Big(\,#1\,\Big)}
+\newcommand{\bigset}[1]{\big\{\,#1\,\big\}}
+\newcommand{\Bigset}[1]{\Big\{\,#1\,\Big\}}
 
 \renewcommand{\a}{\alpha}
 \renewcommand{\b}{\beta}
@@ -684,9 +729,13 @@
 \renewcommand{\O}{\Omega}
 
 \newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
 \newcommand{\C}{\mathcal{C}}
 \newcommand{\F}{\mathcal{F}}
+\newcommand{\G}{\mathcal{G}}
 \newcommand{\J}{\mathcal{J}}
+\renewcommand{\L}{\mathcal{L}}
+\renewcommand{\P}{\mathcal{P}}
 \newcommand{\T}{\mathcal{T}}
 \newcommand{\V}{\mathcal{V}}
 
@@ -694,11 +743,10 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Q}{\mathbb{Q}}
 
-\newcommand{\second}{{\prime\prime}}
-\newcommand{\third}{{\prime\prime\prime}}
-
 \newcommand{\true}{\textsc{true}\xspace}
 \newcommand{\false}{\textsc{false}\xspace}
+
+\renewcommand{\mod}{\text{ mod }}
 
 % Default math commands useful for spacing:
 % \; - a thick space
